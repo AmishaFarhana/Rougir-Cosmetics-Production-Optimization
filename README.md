@@ -1,108 +1,142 @@
+# 💄 Rougir Cosmetics – Production Optimization (Linear Programming)
 
-Similar constraints applied for:
+Linear programming model developed to determine the optimal production and outsourcing strategy for Rougir Cosmetics International (RCI).
 
-- Oil  
-- Scents & Colors  
-- Emulsifiers  
+**Objective:** Minimize total production cost while meeting product demand, labor capacity, and raw material constraints.
+
+---
+
+## 📌 Business Problem
+
+RCI produces three flagship products:
+
+- Face Cream  
+- Body Cream  
+- Hand Cream  
+
+Due to limited labor hours and raw materials, the firm must decide:
+
+- How much to produce in-house (across two shifts)
+- How much to outsource
+- How to allocate constrained resources efficiently
+
+Outsourcing costs:
+- Face Cream: $40/unit  
+- Body Cream: $55/unit  
+- Hand Cream: Not allowed  
+
+---
+
+## 📊 Model Overview
+
+### 🎯 Objective Function
+
+Minimize:
+
+Total In-House Production Cost + Outsourcing Cost
+
+Costs include:
+- Labor (Stage 1 & Stage 2, two shifts)
+- Raw materials (Water, Oil, Scents & Colors, Emulsifiers)
+- Outsourcing costs
+
+---
+
+### 🔢 Decision Variables
+
+In-house production:
+- FS1, FS2, FS12 (Face Cream)
+- BS1, BS2, BS12 (Body Cream)
+- HS1, HS2, HS12 (Hand Cream)
+
+Outsourcing:
+- FO (Face Cream)
+- BO (Body Cream)
+
+All variables ≥ 0.
+
+---
+
+### 📋 Key Constraints
+
+1️⃣ Demand Satisfaction  
+- Face Cream ≥ 12,000  
+- Body Cream ≥ 8,000  
+- Hand Cream ≥ 18,000  
+
+2️⃣ Labor Capacity (per stage & shift)  
+- Stage 1 and Stage 2 cannot exceed available hours  
+
+3️⃣ Material Availability  
+- Water ≤ 200,000 lbs  
+- Oil ≤ 50,000 lbs  
+- Scents & Colors ≤ 7,500 lbs  
+- Emulsifiers ≤ 15,000 lbs  
 
 ---
 
 ## ✅ Optimal Solution
 
-### Total Minimum Cost
+**Minimum Total Cost: $1,368,100**
 
-**$1,368,100**
+### Production Plan
 
----
-
-### Production Decisions
-
-| Product | In-House | Outsourced |
-|----------|----------|------------|
-| Face Cream | 0 | 12,000 |
-| Body Cream | 1,000 (Shift 1) | 7,000 |
-| Hand Cream | 18,000 (In-house) | 0 |
+- Face Cream: Fully outsourced (12,000 units)
+- Body Cream: 1,000 produced in-house (Shift 1), 7,000 outsourced
+- Hand Cream: Fully produced in-house (both shifts)
 
 ---
 
-### Key Observations
+## 📊 Sensitivity Analysis
 
-- Face Cream is fully outsourced despite slightly lower in-house cost per unit.
-- Hand Cream is produced entirely in-house.
-- Body Cream is partially outsourced.
-- Scents & Colors and Emulsifiers are binding constraints.
-- Water and Oil show slack.
+### 🔎 Reduced Costs
+- Face Cream (Shift 1) would need a ~$19.60 cost reduction to become viable in-house.
+- Variables with reduced cost = 0 are already optimal.
 
----
-
-# 📊 Sensitivity Analysis
-
-## 🔎 Reduced Costs
-
-- FS1 reduced cost: 19.5979  
-  → Its cost must drop by $19.60 per unit before it becomes viable.
-
-- HS12 reduced cost: 0.4625  
-  → Small cost reduction could make it viable.
-
-Variables with reduced cost = 0 are already optimal in solution.
+### 💰 Shadow Prices
+- Scents & Colors: –$50.96  
+  → Each additional pound reduces total cost by ~$51.
+- Hand Cream Demand: $47.22  
+  → Increasing demand increases total cost within allowable range.
 
 ---
 
-## 📉 Shadow Prices
+## 💡 Key Insights
 
-### Scents & Colors
-
-Shadow price: **–$50.96**
-
-Interpretation:
-Each additional pound reduces total cost by $50.96.
-
-Recommendation:
-Increase availability of scents & colors.
+- Face Cream outsourcing is optimal due to labor/material bottlenecks.
+- Body Cream is cheaper in-house but capacity limits force partial outsourcing.
+- Hand Cream efficiently utilizes both shifts.
+- Scents & Colors is a binding constraint and most valuable raw material.
+- Water and Oil have slack and may be overstocked.
 
 ---
 
-### Hand Cream Demand
+## 🚀 Managerial Recommendations
 
-Shadow price: **$47.22**
-
-Producing one additional unit increases total cost by $47.22 (within allowable range).
-
----
-
-## 📌 Stability Ranges
-
-- Face Cream outsourcing remains optimal unless outsourcing cost increases by $19.60+
-- Production mix remains stable within allowable increase/decrease ranges
+- Increase availability of Scents & Colors.
+- Maintain outsourcing for Face Cream unless labor/material constraints improve.
+- Prioritize in-house Body Cream production when feasible.
+- Evaluate shift structure for better long-term capacity planning.
 
 ---
 
-# 💡 Strategic Insights
+## 🛠 Tools Used
 
-### 1️⃣ Outsourcing Strategy
-
-- Face Cream outsourcing is cost-effective due to labor/material bottlenecks
-- Body Cream outsourcing is expensive and should be minimized
-- Hand Cream should remain fully in-house
+- Linear Programming (LP)
+- Excel Solver
+- Sensitivity Analysis (Reduced Cost & Shadow Price Interpretation)
 
 ---
 
-### 2️⃣ Resource Allocation
+## 🎯 Skills Demonstrated
 
-- Increase scents & colors inventory
-- Reduce excess water and oil stock
-- Reevaluate shift structure for better capacity utilization
-
----
-
-### 3️⃣ Managerial Recommendation
-
-RCI should:
-
-- Continue outsourcing face cream
-- Prioritize in-house production of body cream when feasible
-- Increase constrained raw materials
-- Explore incremental labor expansion if demand grows
+- Linear Programming Formulation  
+- Cost Minimization Modeling  
+- Production Scheduling  
+- Resource Allocation Optimization  
+- Sensitivity & Dual Analysis  
+- Managerial Interpretation of LP Results  
 
 ---
+
+This project demonstrates practical application of optimization modeling to real production and outsourcing decisions under operational constraints.
